@@ -1,0 +1,51 @@
+[maxeler@lkn-n7 Bitonic08]$ make build-hw
+cd ../.. ; ant -f /opt/maxcompiler/examples/common/build.xml -Dbasedir=.
+Buildfile: /opt/maxcompiler/examples/common/build.xml
+
+init:
+
+compile:
+     [echo] Using MaxCompiler from: /opt/maxcompiler
+
+
+[maxjcompiler] Compiling to folder /home/maxeler/workspace/Sorting/bin
+
+BUILD SUCCESSFUL
+Total time: 2 seconds
+MAXSOURCEDIRS=../../src MAXAPPJCP=../../bin /opt/maxcompiler/bin/maxJavaRun Bitonic08/DramLoopbackHWBuilder
+maxJavaRun : Execute Java program with Maxeler environment
+
+----------------------------------------------------------
+Java class to run   : Bitonic08.DramLoopbackHWBuilder
+Class arguments     : 
+Execution classpath : /opt/maxcompiler/lib/MaxCompiler.jar:
+                      ../../bin
+JVM memory limit    : 2048 MB
+----------------------------------------------------------
+
+Sun 10:14: MaxCompiler version: 2011.3.1
+Sun 10:14: Build "DramLoopback" start time: Sun Jul 14 10:14:35 CEST 2013
+Sun 10:14: Main build process running as user maxeler on host lkn-n7.fe.uni-lj.si
+Sun 10:14: Build location: /home/maxeler/workspace/Sorting/bin/Bitonic08/../../hardware/DramLoopback
+Sun 10:14: Detailed build log available in "_build.log"
+Sun 10:14: Instantiating manager
+Sun 10:14: Instantiating kernel "DramLoopbackKernel"
+Sun 10:15: Compiling manager (PCIe Only)
+Sun 10:15: 
+Sun 10:15: Compiling kernel "DramLoopbackKernel
+Sun 10:15: WARNING: Warning (UNCONNECTED_DESIGN_ELEMENT):
+Sun 10:15: WARNING: Unconnected elements in design 'DramLoopbackKernel'
+Sun 10:15: WARNING: details in : /home/maxeler/workspace/Sorting/hardware/DramLoopback/scratch/DramLoopbackKernel_graph_warnings.txt
+Sun 10:16: Creating a preliminary MaxCompilerDesignData.dat. (@ CoreCompile DramLoopbackKernel)
+Sun 10:18: Updating the preliminary MaxCompilerDesignData.dat. (@ Main build)
+Sun 10:18: Generating VHDL + netlists (including running CoreGen)
+Sun 10:19: Running back-end hardware build (12 phases)
+Sun 10:19: (1/12) - GenerateMaxFileDataFile
+Sun 10:19: (2/12) - XST
+Tue 20:37: ERROR: Error running external tool :-
+Tue 20:37: ERROR: Problem            : Maximum allowed job runtime of 48 hours exceeded. To change this setting adjust 'build.build.sub_process_timeout_hours' in your build configuration. (Command failed with exit code: 152, (killed by signal 24))
+Tue 20:37: ERROR: Command run        :  ulimit -s unlimited && xst -ifn xst.scr
+Tue 20:37: ERROR: Directory run in   : ../../hardware/DramLoopback/scratch/xilinx_pnr/xst
+Tue 20:37: ERROR: Exit code          : 152
+Tue 20:37: ERROR: Detailed build log : /home/maxeler/workspace/Sorting/bin/Bitonic08/../../hardware/DramLoopback/_build.log
+make: *** [build-hw] Error 1
