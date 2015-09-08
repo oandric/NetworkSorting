@@ -1,3 +1,4 @@
+// Type of network sorting
 package Bitonic16;
 
 import com.maxeler.maxcompiler.v1.kernelcompiler.Kernel;
@@ -6,9 +7,9 @@ import com.maxeler.maxcompiler.v1.kernelcompiler.types.base.HWVar;
 import com.maxeler.maxcompiler.v1.kernelcompiler.types.composite.KArray;
 import com.maxeler.maxcompiler.v1.kernelcompiler.types.composite.KArrayType;
 
-public class DramLoopbackKernel extends Kernel {
+public class NetworkSortKernel extends Kernel {
 	public KArrayType<HWVar> array_type = new KArrayType<HWVar>(hwUInt(16), 64);
-	public DramLoopbackKernel(KernelParameters parameters) {
+	public NetworkSortKernel(KernelParameters parameters) {
 		super(parameters);
 
 		KArray<HWVar> temp = io.input("inX", array_type);

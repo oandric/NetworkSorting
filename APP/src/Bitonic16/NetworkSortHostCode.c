@@ -75,7 +75,7 @@ int main(int argc, char* argv[])
 	FILE *result;
 
 	printf("Opening and configuring FPGA.\n");
-	maxfile = max_maxfile_init_DramLoopback();
+	maxfile = max_maxfile_init_NetworkSort();
 	device = max_open_device(maxfile, device_name);
 	max_set_terminate_on_error(device);
 
@@ -545,7 +545,7 @@ int main(int argc, char* argv[])
 			max_run(device,
 			max_input("inX", in_array, ARRAY_SIZE * STREAM_SIZE * sizeof(uint16_t)),
 			max_output("oData", out_array, ARRAY_SIZE * STREAM_SIZE * sizeof(uint16_t)),
-			max_runfor("DramLoopbackKernel", STREAM_SIZE),
+			max_runfor("NetworkSortKernel", STREAM_SIZE),
 			max_end());
 
 			clock_gettime(CLOCK_REALTIME, &t2);

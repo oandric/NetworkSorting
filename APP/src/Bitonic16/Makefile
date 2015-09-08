@@ -3,7 +3,7 @@ BASEDIR=../..
 # Java package name
 PACKAGE=Bitonic16
 # Application name
-APP=DramLoopback
+APP=NetworkSort
 
 # Names of your maxfiles
 HWMAXFILE=$(APP).max

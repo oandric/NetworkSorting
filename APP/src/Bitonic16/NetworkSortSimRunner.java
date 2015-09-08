@@ -1,3 +1,4 @@
+// Type of network sorting
 package Bitonic16;
 
 
@@ -5,14 +6,14 @@ import com.maxeler.maxcompiler.v1.kernelcompiler.types.base.HWVar;
 import com.maxeler.maxcompiler.v1.kernelcompiler.types.composite.KArrayType;
 import com.maxeler.maxcompiler.v1.managers.standard.SimulationManager;
 
-public class DramLoopbackSimRunner {
+public class NetworkSortSimRunner {
 	public static void main(String[] args) {
 
 		SimulationManager manager =
-			new SimulationManager("DramLoopbackSimRunner");
+			new SimulationManager("NetworkSortSimRunner");
 
-		DramLoopbackKernel kernel =
-			new DramLoopbackKernel(manager.makeKernelParameters());
+		NetworkSortKernel kernel =
+			new NetworkSortKernel(manager.makeKernelParameters());
 
 		manager.setKernel( kernel );
 
