@@ -3,13 +3,12 @@
 
 
 
-Simplex algorithm for the Maxeler data-flow computer architecture. The data-flow engine is mainly responsible for the pivoting operation.
+*Network sorting on Maxeler dataflow machine is implemented for the MaxIDE version 2011.*
 
-The implementation in the APP directory is streaming data from LMEM as vectors.
+We give an example of a Bitonic network sorting algorithm for arrays of 64 values to be sorted.
 
-In the directory **other**, three other implementations can be found:
- - simplex-stream : streaming the data from the main memory, one element at a time.
- - simplex-stream-vec : streaming the data from the main memory as vectors.
- - simplex-lmem : streaming the data from LMEM, one element at a time.
+The implementation in the APP directory is streaming array from the PC over the PCIe bus to the FPGA on MAX2 maxeler card inside PC and compares results to the sequential sorting algorithm running on the CPU inside the same PC.
+
+The original implementation of the network sorting on a PC using the conventional control flow machine is found in folder ORIG.
  
 ![LPLogo](DOCS/Bitonic8.png)
