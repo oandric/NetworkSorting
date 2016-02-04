@@ -1,0 +1,57 @@
+package networksorting;
+
+import com.maxeler.maxcompiler.v2.kernelcompiler.Kernel;
+import com.maxeler.maxcompiler.v2.managers.BuildConfig;
+import com.maxeler.maxcompiler.v2.managers.engine_interfaces.CPUTypes;
+import com.maxeler.maxcompiler.v2.managers.engine_interfaces.EngineInterface;
+import com.maxeler.maxcompiler.v2.managers.engine_interfaces.InterfaceParam;
+import com.maxeler.maxcompiler.v2.managers.standard.Manager;
+import com.maxeler.maxcompiler.v2.managers.standard.Manager.IOType;
+
+public class NetworkSortingManager {
+
+	private static final String s_kernelName = "NetworkSortingKernel";
+
+	public static void main(String[] args) {
+		NetworkSortingEngineParameters params = new NetworkSortingEngineParameters(args);
+		Manager manager = new Manager(params);
+		Kernel kernel   = new NetworkSortingKernel(manager.makeKernelParameters(s_kernelName));
+		manager.setKernel(kernel);
+		/*manager.setIO(
+			link("x",   IODestination.CPU),
+			link("y",   IODestination.CPU),
+			link("s", IODestination.CPU));
+		 */
+		manager.setIO(IOType.ALL_CPU);
+		manager.createSLiCinterface(interfaceDefault());
+
+		configBuild(manager, params);
+
+		manager.build();
+	}
+
+	private static EngineInterface interfaceDefault() {
+		EngineInterface engine_interface = new EngineInterface();
+		CPUTypes   type = CPUTypes.UINT16;
+
+		int        typeSize = type.sizeInBytes();
+
+		InterfaceParam  array_size     = engine_interface.addParam("array_size", CPUTypes.INT);
+		InterfaceParam  stream_size    = engine_interface.addParam("stream_size", CPUTypes.INT);
+
+		engine_interface.setTicks(s_kernelName, stream_size);
+
+		engine_interface.setStream("inX",   type, typeSize * array_size * stream_size);
+		engine_interface.setStream("oData",   type, typeSize * array_size * stream_size);
+
+		return engine_interface;
+	}
+
+	private static void configBuild(Manager manager, NetworkSortingEngineParameters params) {
+		manager.setEnableStreamStatusBlocks(false);
+		BuildConfig buildConfig = manager.getBuildConfig();
+		buildConfig.setMPPRCostTableSearchRange(params.getMPPRStartCT(), params.getMPPREndCT());
+		buildConfig.setMPPRParallelism(params.getMPPRThreads());
+		buildConfig.setMPPRRetryNearMissesThreshold(params.getMPPRRetryThreshold());
+	}
+}
